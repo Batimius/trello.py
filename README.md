@@ -1,5 +1,5 @@
 # trello.py
-## Trello API
+## Description
 trello.py is an API that will make your Python and Trello communication way easier.
 This API was insipired by the Roblox-Trello API, an Object-Oriented Trello API.
 
