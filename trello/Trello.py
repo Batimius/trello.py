@@ -106,6 +106,13 @@ class Board:
             if ListObject["name"] == ListName:
                 return List(self.__AUTH, ListObject["id"])
         return None
+
+    def GetListById(self, ListId):
+        Lists = self.GetLists()
+        for ListObject in Lists:
+            if ListObject["id"] == ListId:
+                return List(self.__AUTH, ListObject["id"])
+        return None
     
     def GetCardByName(self, CardName):
         Cards = self.GetCards()
@@ -114,10 +121,24 @@ class Board:
                 return Card(self.__AUTH, CardObject["id"])
         return None
 
+    def GetCardById(self, CardId):
+        Cards = self.GetCards()
+        for CardObject in Cards:
+            if CardObject["id"] == CardId:
+                return Card(self.__AUTH, CardObject["id"])
+        return None
+
     def GetLabelByName(self, LabelName):
         Labels = self.GetLabels()
         for LabelObject in Labels:
             if LabelObject["name"] == LabelName:
+                return Label(self.__AUTH, LabelObject["id"])
+        return None
+
+    def GetLabelById(self, LabelId):
+        Labels = self.GetLabels()
+        for LabelObject in Labels:
+            if LabelObject["id"] == LabelId:
                 return Label(self.__AUTH, LabelObject["id"])
         return None
 
@@ -248,7 +269,8 @@ class Card:
         self.SetProperty("closed", Closed)
 
     def AddLabel(self, Label):
-        pass
+        URL = "https://api.trello.com/1/cards/" + self.GetId() + "/idLabels" + self.__AUTH + "&value=" + Label.GetId()
+        requests.request("POST", URL)
 
     def Comment(self, Comment):
         URL = "https://api.trello.com/1/cards/" + self.GetId() + "/actions/comments" + self.__AUTH
