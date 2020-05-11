@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="trello.py",
-    version="0.0.2",
+    version="0.0.3.post1",
     author="Batman212369",
     author_email="batman212369.official@gmail.com",
-    description="A simple Python to Trello API",
+    description="A simple and user-friendly Python to Trello API",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Batman212369/trello.py",
@@ -17,6 +17,7 @@ setuptools.setup(
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Operating System :: OS Independent",
