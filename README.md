@@ -5,7 +5,7 @@ trello.py is a simple Python API that is used to communicate with [Trello]("http
 
 This API is insipired by LisaF854's [Roblox-Trello | Object Oriented Trello API](https://devforum.roblox.com/t/roblox-trello-object-oriented-trello-api/233582). It uses a similar structure to that API, so you will notice many of the functions there are applied to this API.
 
-This API is for has easy and user-friendly functions that do a lot of the task you would do normally yourself. More functions will be added in the future in case they are needed.
+This API has easy and user-friendly functions that do a lot of the task you would do normally yourself. More functions will be added in the future in case they are needed.
 
 Getting Started
 ---------------
