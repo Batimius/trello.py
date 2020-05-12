@@ -108,11 +108,7 @@ class Board:
         return None
 
     def GetListById(self, ListId):
-        Lists = self.GetLists()
-        for ListObject in Lists:
-            if ListObject["id"] == ListId:
-                return List(self.__AUTH, ListObject["id"])
-        return None
+        return List(self.__AUTH, ListId)
     
     def GetCardByName(self, CardName):
         Cards = self.GetCards()
@@ -122,11 +118,7 @@ class Board:
         return None
 
     def GetCardById(self, CardId):
-        Cards = self.GetCards()
-        for CardObject in Cards:
-            if CardObject["id"] == CardId:
-                return Card(self.__AUTH, CardObject["id"])
-        return None
+        return Card(self.__AUTH, CardId)
 
     def GetLabelByName(self, LabelName):
         Labels = self.GetLabels()
@@ -136,11 +128,7 @@ class Board:
         return None
 
     def GetLabelById(self, LabelId):
-        Labels = self.GetLabels()
-        for LabelObject in Labels:
-            if LabelObject["id"] == LabelId:
-                return Label(self.__AUTH, LabelObject["id"])
-        return None
+        return Label(self.__AUTH, LabelId)
 
     def GetLabelByNameAndColor(self, LabelName, LabelColor):
         Labels = self.GetLabels()
@@ -208,6 +196,9 @@ class List:
                 return Card(self.__AUTH, CardObject["id"])
         return None
 
+    def GetCardById(self, CardId):
+        return Card(self.__AUTH, CardId)
+
     def SetName(self, Name):
         self.SetProperty("name", Name)
     
@@ -271,6 +262,10 @@ class Card:
     def AddLabel(self, Label):
         URL = "https://api.trello.com/1/cards/" + self.GetId() + "/idLabels" + self.__AUTH + "&value=" + Label.GetId()
         requests.request("POST", URL)
+
+    def RemoveLabel(self, Label):
+        URL = "https://api.trello.com/1/cards/" + self.GetId() + "/idLabels/" + Label.GetId() + self.__AUTH
+        requests.request("DELETE", URL)
 
     def Comment(self, Comment):
         URL = "https://api.trello.com/1/cards/" + self.GetId() + "/actions/comments" + self.__AUTH
