@@ -292,7 +292,7 @@ class Card:
         requests.request("DELETE", URL)
 
     def UpdateCustomFieldItem(self, Property, Value, CustomFieldItemId):
-        self.SetProperty("customField/" + str(CustomFieldItemId) + "/" + Property, Value)
+        self.SetProperty("customField/" + str(CustomFieldItemId) + "/item/" + Property, Value)
 
     def Comment(self, Comment):
         URL = "https://api.trello.com/1/cards/" + self.GetId() + "/actions/comments" + self.__AUTH
