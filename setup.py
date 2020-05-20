@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="trello.py",
-    version="0.0.4",
+    version="0.0.5",
     author="Batman212369",
     author_email="batman212369.official@gmail.com",
     description="A simple and user-friendly Python to Trello API",
