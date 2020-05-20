@@ -144,7 +144,7 @@ class Board:
         CustomFields = self.GetCustomFields()
         for CustomFieldObject in CustomFields:
             if CustomFieldObject["name"] == CustomFieldName:
-                return Label(self.__AUTH, CustomFieldObject["id"])
+                return CustomField(self.__AUTH, CustomFieldObject["id"])
         return None
 
     def GetCustomFieldById(self, CustomFieldId):
