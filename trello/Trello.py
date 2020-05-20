@@ -100,6 +100,9 @@ class Board:
     def GetLabels(self):
         return self.GetData("/labels")
 
+    def GetCustomFields(self):
+        return self.GetData("/customFields")
+
     def GetListByName(self, ListName):
         Lists = self.GetLists()
         for ListObject in Lists:
@@ -136,6 +139,16 @@ class Board:
             if LabelObject["name"] == LabelName and LabelObject["color"] == LabelColor:
                 return Label(self.__AUTH, LabelObject["id"])
         return None
+
+    def GetCustomFieldByName(self, CustomFieldName):
+        CustomFields = self.GetCustomFields()
+        for CustomFieldObject in CustomFields:
+            if CustomFieldObject["name"] == CustomFieldName:
+                return Label(self.__AUTH, CustomFieldObject["id"])
+        return None
+
+    def GetCustomFieldById(self, CustomFieldId):
+        return Label(self.__AUTH, CustomFieldId)
 
     def SetName(self, Name):
         self.SetProperty("name", Name)
@@ -244,6 +257,17 @@ class Card:
     def GetLabels(self):
         return self.GetData()["labels"]
 
+    def GetCustomFieldItems(self):
+        return self.GetData("/customFieldItems")
+
+    def GetCustomFieldItemIdByName(self, CustomFieldName):
+        CustomFields = self.GetCustomFieldItems()
+        for CustomFieldObject in CustomFields:
+            TempCustomField = CustomField(self.__AUTH, CustomFieldObject["idCustomField"])
+            if TempCustomField.GetName() == CustomFieldName:
+                return CustomFieldObject["id"]
+        return None
+
     def IsArchived(self):
         return self.GetData()["closed"]
 
@@ -266,6 +290,9 @@ class Card:
     def RemoveLabel(self, Label):
         URL = "https://api.trello.com/1/cards/" + self.GetId() + "/idLabels/" + Label.GetId() + self.__AUTH
         requests.request("DELETE", URL)
+
+    def UpdateCustomFieldItem(self, Property, Value, CustomFieldItemId):
+        self.SetProperty("customField/" + str(CustomFieldItemId) + "/" + Property, Value)
 
     def Comment(self, Comment):
         URL = "https://api.trello.com/1/cards/" + self.GetId() + "/actions/comments" + self.__AUTH
