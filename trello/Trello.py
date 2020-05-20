@@ -323,3 +323,75 @@ class Label:
 
     def ClassName(self):
         return "Label"
+
+class CustomField:
+    def __init__(self, Auth, CustomFieldId):
+        self.__AUTH = Auth
+        self.ID = CustomFieldId
+
+    def GetId(self):
+        return self.ID
+
+    def GetData(self, Argument=""):
+        URL = "https://api.trello.com/1/customFields/" + self.GetId() + Argument + self.__AUTH
+        Response = requests.request("GET", URL)
+        Result = json.loads(Response.text)
+        return Result
+
+    def SetProperty(self, Property, Value):
+        URL = "https://api.trello.com/1/customFields/" + self.GetId() + "/" + Property + self.__AUTH + "&value=" + Value
+        requests.request("PUT", URL)
+
+    def GetName(self):
+        return self.GetData()["name"]
+
+    def GetCustomFieldOptions(self):
+        return self.GetData("/options")
+
+    def GetCustomFieldOptionByName(self, CustomFieldOptionName):
+        Options = self.GetCustomFieldOptions()
+        for Option in Options:
+            if Option["value"]["text"] == CustomFieldOptionName:
+                return CustomFieldOption(self.__AUTH, self, Option["_id"])
+        return None
+
+    def SetName(self, CustomFieldName):
+        self.SetProperty("name", CustomFieldName)
+
+    def Delete(self):
+        URL = "https://api.trello.com/1/customFields/" + self.GetId() + self.__AUTH
+        requests.request("DELETE", URL)
+
+    def ClassName(self):
+        return "CustomField"
+
+class CustomFieldOption:
+    def __init__(self, Auth, CustomFieldObject, CustomFieldOptionId):
+        self.__AUTH = Auth
+        self.ID = CustomFieldOptionId
+        self.CustomField = CustomFieldObject
+
+    def GetId(self):
+        return self.ID
+
+    def GetCustomField(self):
+        return self.CustomField
+
+    def GetData(self, Argument=""):
+        URL = "https://api.trello.com/1/customFields/" + self.GetCustomField().GetId() + "/options/" + self.GetId() + Argument + self.__AUTH
+        Response = requests.request("GET", URL)
+        Result = json.loads(Response.text)
+        return Result
+
+    def GetName(self):
+        return self.GetData()["value"]["text"]
+
+    def GetColor(self):
+        return self.GetData()["color"]
+
+    def Delete(self):
+        URL = "https://api.trello.com/1/customFields/" + self.GetCustomField().GetId() + "/options/" + self.GetId() + self.__AUTH
+        requests.request("DELETE", URL)
+
+    def ClassName(self):
+        return "CustomFieldOption"
