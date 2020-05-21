@@ -291,8 +291,9 @@ class Card:
         URL = "https://api.trello.com/1/cards/" + self.GetId() + "/idLabels/" + Label.GetId() + self.__AUTH
         requests.request("DELETE", URL)
 
-    def UpdateCustomFieldItem(self, Property, Value, CustomFieldItemId):
-        self.SetProperty("customField/" + str(CustomFieldItemId) + "/item/" + Property, Value)
+    def UpdateCustomFieldItem(self, CustomFieldObject, Value):
+        URL = "https://api.trello.com/1/cards/" + self.GetId() + "/customField/" + CustomFieldObject.GetId() + "/item" + self.__AUTH
+        requests.request("PUT", URL, headers=Headers, data=Value)
 
     def Comment(self, Comment):
         URL = "https://api.trello.com/1/cards/" + self.GetId() + "/actions/comments" + self.__AUTH
