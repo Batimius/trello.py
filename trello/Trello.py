@@ -303,7 +303,7 @@ class Card:
         requests.request("POST", URL, Params=Query)
 
     def Move(self, List):
-        self.SetProperty("idBoard", List.GetId())
+        self.SetProperty("idList", List.GetId())
 
     def Delete(self):
         URL = "https://api.trello.com/1/cards/" + self.GetId() + self.__AUTH
