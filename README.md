@@ -1,4 +1,4 @@
-Python Trello API
+Python Trello Rest API
 =========================
 
 trello.py is a simple Python Rest API that is used to communicate with [Trello]("https://trello.com/"). It is an Object-Oriented API and uses the [Trello Rest API](https://trello.com/docs/api/index.html).
