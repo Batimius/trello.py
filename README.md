@@ -53,6 +53,6 @@ Currently, there are five types of objects, `Trello`, `Board`, `List`, `Card`, a
  Bugs, Reports, and Suggestions
 ---------------
 
-Keep in mind that this API is in its early stages. It **will** have bugs and that is something that is common to early versions. If you find any bugs or have any suggestions, please send them directly to me via Discord or create a bug report or suggestion on the [GitHub]("https://github.com/Batman212369/trello.py") page  (W.I.P.). If you contact me through Discord, my username is `Batman212369#5703`.
+Keep in mind that this API is in its early stages. It **will** have bugs and that is something that is common to early versions. If you find any bugs or have any suggestions, please send them directly to me via Discord or create a bug report or suggestion on the [GitHub]("https://github.com/Batman212369/trello.py") page  (W.I.P.). If you contact me through Discord, my username is `Batimius#5703`.
 
 > **NOTE:** Yes, I know that currently there aren't any checkings (doesn't check for errors nor if the input is the correct type) when calling methods. This will be added soon, but for now just use the API responsibly and you should not get any errors.
